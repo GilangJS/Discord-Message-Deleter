@@ -26,20 +26,43 @@ startBtn.onclick = e => {
         stop = stopBtn.disabled = !(startBtn.disabled = false);
     });
 };
+
+chrome.storage.local.get(['afterMessageId'], function (result) {
+    document.querySelector('input#afterMessageId').value = result.afterMessageId || ''
+})
+
+chrome.storage.local.get(['beforeMessageId'], function (result) {
+    document.querySelector('input#beforeMessageId').value = result.beforeMessageId || ''
+})
+
+document.querySelector('input#afterMessageId').oninput = function () {
+    chrome.storage.local.set({ afterMessageId: document.querySelector('input#afterMessageId').value })
+}
+
+document.querySelector('input#beforeMessageId').oninput = function () {
+    chrome.storage.local.set({ beforeMessageId: document.querySelector('input#beforeMessageId').value })
+}
+
 stopBtn.onclick = e => stop = stopBtn.disabled = !(startBtn.disabled = false);
-document.querySelector('button#clear').onclick = e => { logArea.innerHTML = ''; };
+document.querySelector('button#clear').onclick = e => { 
+    document.querySelector('input#afterMessageId').value = ''
+    document.querySelector('input#beforeMessageId').value = ''
+    chrome.storage.local.set({ afterMessageId: '' })
+    chrome.storage.local.set({ beforeMessageId: '' })
+    logArea.innerHTML = ''; 
+};
 document.querySelector('button#getToken').onclick = e => {
     requestLocalStorage("token", function (response) {
         document.querySelector('input#authToken').value = JSON.parse(response.result);
-    })    
+    })
 };
 document.querySelector('button#getAuthor').onclick = e => {
-    requestLocalStorage("user_id_cache", function(response) {
+    requestLocalStorage("user_id_cache", function (response) {
         document.querySelector('input#authorId').value = JSON.parse(response.result);
     })
 };
 document.querySelector('button#getGuildAndChannel').onclick = e => {
-    chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+    chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
         const url = tabs[0].url
         const m = url.match(/channels\/([\w@]+)\/(\d+)/)
         if (!m) {
@@ -49,6 +72,8 @@ document.querySelector('button#getGuildAndChannel').onclick = e => {
 
         document.querySelector('input#guildId').value = m[1];
         document.querySelector('input#channelId').value = m[2];
+        chrome.storage.local.set({ guildId: document.querySelector('input#guildId').value })
+        chrome.storage.local.set({ channelId: document.querySelector('input#channelId').value })
     })
 };
 document.querySelector('#redact').onchange = e => {
