@@ -1,0 +1,10 @@
+{
+    "name": "Delete Discord Messages",
+    "version": "0.1",
+    "description": "Delete your discord message in batch",
+    "browser_action": {
+        "default_popup": "view.html"
+    },
+    "permissions": ["declarativeContent"],
+    "manifest_version": 2
+}

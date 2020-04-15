@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <title>Delete Discord Messages</title>
+    <base target="_blank">
+    <style>
+        body {
+            background-color: #36393f;
+            color: #dcddde;
+            font-family: sans-serif;
+        }
+
+        a {
+            color: #00b0f4;
+        }
+
+        body.redact .priv {
+            display: none;
+        }
+
+        body:not(.redact) .mask {
+            display: none;
+        }
+
+        body.redact [priv] {
+            -webkit-text-security: disc;
+        }
+
+        .toolbar span {
+            margin-right: 8px;
+        }
+
+        button {
+            color: #fff;
+            background: #7289da;
+            border: 0;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        button:disabled {
+            display: none;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            background-color: #202225;
+            color: #b9bbbe;
+            border-radius: 4px;
+            border: 0;
+            padding: 0 .5em;
+            height: 24px;
+            width: 144px;
+            margin: 2px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="toolbar" style="position:fixed;top:0;left:0;right:0;padding:8px;background:#36393f;box-shadow: 0 1px 0 rgba(0,0,0,.2), 0 1.5px 0 rgba(0,0,0,.05), 0 2px 0 rgba(0,0,0,.05);">
+        <div style="display:flex;flex-wrap:wrap;">
+            <span>Authorization
+                <a href="https://github.com/victornpb/deleteDiscordMessages/blob/master/help/authToken.md" title="Help">?</a>
+                <button id="getToken">Get</button>
+                <br>
+                <input type="password" id="authToken" placeholder="Auth Token" autofocus>*
+                <br>
+                <span>Author
+                    <a href="https://github.com/victornpb/deleteDiscordMessages/blob/master/help/authorId.md" title="Help">?</a>
+                </span>
+                <button id="getAuthor">Me</button>
+                <br>
+                <input id="authorId" type="text" placeholder="Author ID" priv>
+            </span>
+            <span>Guild/Channel
+                <a href="https://github.com/victornpb/deleteDiscordMessages/blob/master/help/channelId.md" title="Help">?</a>
+                <button id="getGuildAndChannel">Get</button>
+                <br>
+                <input id="guildId" type="text" placeholder="Guild ID" priv>
+                <br>
+                <input id="channelId" type="text" placeholder="Channel ID" priv>
+            </span>
+            <br>
+            <span>Range
+                <a href="https://github.com/victornpb/deleteDiscordMessages/blob/master/help/messageId.md" title="Help">?</a>
+                <br>
+                <input id="afterMessageId" type="text" placeholder="After messageId" priv>
+                <br>
+                <input id="beforeMessageId" type="text" placeholder="Before messageId" priv>
+            </span>
+            <span>Filter
+                <a href="https://github.com/victornpb/deleteDiscordMessages/blob/master/help/filters.md" title="Help">?</a>
+                <br>
+                <input id="content" type="text" placeholder="Containing text" priv>
+                <br>
+                <label>
+                    <input id="hasLink" type="checkbox">has: link</label>
+                <br>
+                <label>
+                    <input id="hasFile" type="checkbox">has: file</label>
+                <br>
+                <label>
+                    <input id="includeNsfw" type="checkbox">Include NSFW</label>
+            </span>
+        </div>
+        <button id="start" style="background:#43b581;width:80px;">Start</button>
+        <button id="stop" style="background:#f04747;width:80px;" disabled>Stop</button>
+        <button id="clear" style="width:80px;">Clear log</button>
+        <label>
+            <input id="redact" type="checkbox">
+            <small>Hide sensitive information</small>
+        </label>
+        <span></span>
+        <label>
+            <input id="autoScroll" type="checkbox" checked>
+            <small>Auto scroll</small>
+        </label>
+        <span></span>
+    </div>
+    <pre style="margin-top:150px;font-size:0.75rem;font-family:Consolas,Liberation Mono,Menlo,Courier,monospace;">
+        <center>Star this project on <a href="https://github.com/victornpb/deleteDiscordMessages" target="_blank">github.com/victornpb/deleteDiscordMessages</a>!\n\n
+            <a href="https://github.com/victornpb/deleteDiscordMessages/issues" target="_blank">Issues or help</a></center>
+        </pre>
+</body>
+<script src="deleter.js"></script>
+
+</html>
