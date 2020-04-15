@@ -5,6 +5,10 @@
     "browser_action": {
         "default_popup": "view.html"
     },
-    "permissions": ["declarativeContent"],
+    "content_scripts": [{
+        "matches": ["https://discordapp.com/channels/*"],
+        "js": ["localStorage.js"]
+    }],
+    "permissions": ["storage", "tabs"],
     "manifest_version": 2
 }
