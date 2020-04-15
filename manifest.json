@@ -1,5 +1,5 @@
 {
-    "name": "Delete Discord Messages",
+    "name": "Discord Message Deleter",
     "version": "0.1",
     "description": "Delete your discord message in batch",
     "browser_action": {
