@@ -9,3 +9,5 @@ The script was taken from https://github.com/victornpb/deleteDiscordMessages
 1. Check developer mode
 1. Click load unpacked
 1. Select folder of this repo
+
+![github](https://user-images.githubusercontent.com/24287026/79330910-8723de80-7f44-11ea-81ad-800db50c6a73.png)
